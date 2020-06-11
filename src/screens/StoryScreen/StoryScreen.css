@@ -11,9 +11,9 @@
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
   }
-  
+
   .title {
     position: absolute;
     top: 40%;
@@ -21,4 +21,41 @@
     -ms-transform: translate(-40%, -40%);
     transform: translate(-50%, -50%);
     width: 100%;
+  }
+
+  .page1 {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 20px solid gray;
+   }
+
+
+  .page2 {
+    height: 100vh;
+    background-image: url('./book.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding-top: 50px;
+    padding-left: 40px;
+  }
+
+  .bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+  }
+  .bgimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
   }

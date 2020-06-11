@@ -6,7 +6,7 @@
  *
  */
 
-export type ProfileStatus =  "SPLASH" | "AUTH_REQUIRED" | "CONNECTING_ACCOUNT" | "READY" | "ERROR";;
+export type ProfileStatus =  "SPLASH" | "AUTH_REQUIRED" | "CONNECTING_ACCOUNT" | "READY" | "ERROR";
 
 
 export interface Profile{

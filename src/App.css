@@ -52,11 +52,19 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Blackhead';
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
+h2 {
+  font-size: 45px;
+  font-weight: 800;
+}
+
 p {
+  font-family: 'SansSerif';
+  font-size: 30px;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -77,11 +85,13 @@ p {
 .onescreen h1 {
   font-size: 38px;
   text-align: center;
+  font-weight: bold;
 }
 
 .onescreen h2 {
-  font-size: 22px;
+  font-size: 25px;
   text-align: center;
+  font-weight: 800;
 
 }
 

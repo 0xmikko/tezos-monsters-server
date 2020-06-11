@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/browser";
 
 import { Router } from "./screens/Router";
 import configureStore from "./store";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 const store = configureStore();
