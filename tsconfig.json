@@ -17,9 +17,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
-  },
-  "include": [
-    "src"
-  ]
-}
+    "jsx": "react",
+        "noUnusedLocals": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+      },
+      "include": [
+        "src",
+        "src/**/*.json"
+      ]
+    }
+  
