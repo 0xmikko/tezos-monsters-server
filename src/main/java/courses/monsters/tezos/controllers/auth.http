@@ -1,0 +1,20 @@
+GET http://localhost:8080/contracts
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyIiwiaWF0IjoxNTkxNjQ2MDA2LCJleHAiOjE1OTE2NTYwMDZ9.lnvUyYIgSmwBiFyETN0W9Fz5jooKU_q-1556_jzAjaq9cwjaHk42BhMZlwi535CE
+
+###
+POST http://localhost:80/api/item
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyIiwiaWF0IjoxNTkxNjQ2MDA2LCJleHAiOjE1OTE2NTYwMDZ9.lnvUyYIgSmwBiFyETN0W9Fz5jooKU_q-1556_jzAjaq9cwjaHk42BhMZlwi535CE
+
+{}
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "aE7bBTiSimdRWl5bctohEw=="
+}
+
+###

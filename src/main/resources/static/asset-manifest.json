@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.37cd2c46.chunk.css",
+    "main.js": "/static/js/main.d8b61b71.chunk.js",
+    "main.js.map": "/static/js/main.d8b61b71.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.93af8f72.js",
+    "runtime-main.js.map": "/static/js/runtime-main.93af8f72.js.map",
+    "static/css/2.ace36aee.chunk.css": "/static/css/2.ace36aee.chunk.css",
+    "static/js/2.d67ad996.chunk.js": "/static/js/2.d67ad996.chunk.js",
+    "static/js/2.d67ad996.chunk.js.map": "/static/js/2.d67ad996.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b5adcf0fd7d990e9e9e0557fd8049901.js": "/precache-manifest.b5adcf0fd7d990e9e9e0557fd8049901.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ace36aee.chunk.css.map": "/static/css/2.ace36aee.chunk.css.map",
+    "static/css/main.37cd2c46.chunk.css.map": "/static/css/main.37cd2c46.chunk.css.map",
+    "static/js/2.d67ad996.chunk.js.LICENSE.txt": "/static/js/2.d67ad996.chunk.js.LICENSE.txt",
+    "static/media/StoryScreen.css": "/static/media/book.31a36564.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.93af8f72.js",
+    "static/css/2.ace36aee.chunk.css",
+    "static/js/2.d67ad996.chunk.js",
+    "static/css/main.37cd2c46.chunk.css",
+    "static/js/main.d8b61b71.chunk.js"
+  ]
+}
