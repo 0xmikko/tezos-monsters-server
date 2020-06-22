@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Tezos Monsters.iml" filepath="$PROJECT_DIR$/Tezos Monsters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tezos-monsters-server.iml" filepath="$PROJECT_DIR$/.idea/tezos-monsters-server.iml" />
     </modules>
   </component>
 </project>

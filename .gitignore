@@ -30,4 +30,5 @@ build/
 ### VS Code ###
 .vscode/
 /.idea/
-/src/main/resources/application-local.properties
+/src/main/resources/application-dev.yml
+/src/config/google.json
