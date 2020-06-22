@@ -1,34 +1,32 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# testing
+/coverage
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
+# production
+/build
 
-### VS Code ###
-.vscode/
-/.idea/
-/src/main/resources/application-dev.yml
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+/ormconfig.json
+/src/config/*.json
+
 /src/config/google.json
+
+/temp/
+/node_modules/

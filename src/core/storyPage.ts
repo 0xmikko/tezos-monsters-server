@@ -1,49 +1,39 @@
-import {Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
-import { IsNotEmpty} from 'class-validator'
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { BasicRepositoryI } from "./basic";
-import { Answer } from "./answers";
+import { Answer } from "./answer";
 import { Profile } from "./profile";
+import { StoryPageUpdateDTO } from "../payload/storyPage";
 
 @Entity()
 export class StoryPage {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({default: 1})
+  @Column({ default: 1 })
   step: number;
 
-  @Column({default: ''})
+  @Column({ default: "" })
   header: string;
 
-  @Column({default: ''})
+  @Column({ default: "" })
   text: string;
 
-  @Column({default: ''})
+  @Column({ default: "" })
   image: string;
 
-  @Column({default: false})
+  @Column({ default: false })
   hasQuestions: boolean;
 
-  @Column({default: false})
-  isCodePage: boolean
+  @Column({ default: false })
+  isCodePage: boolean;
 
   @OneToMany((type) => Answer, (answer) => answer.storyPage)
   answers: Answer[];
-}
-
-export class StoryPageUpdateDTO {
-  @IsNotEmpty()
-  step: number;
-
-  @IsNotEmpty()
-  header: string;
-
-  @IsNotEmpty()
-  text: string;
-
-  @IsNotEmpty()
-  hasQuestions: boolean;
-
 }
 
 export interface StoryPagesRepositoryI extends BasicRepositoryI<StoryPage> {}

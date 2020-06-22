@@ -15,9 +15,7 @@ export class StoryPagesRepository extends TypeORMRepository<StoryPage>
     return this.repository.findOne({ where: { step } });
   }
 
-  listFull(userID: string): Promise<StoryPage[] | undefined> {
-    return getManager()
-      .getRepository<StoryPage>(StoryPage)
-      .find({ where: { ownerID: userID } });
+  getFull(id : string) :  Promise<StoryPage | undefined> {
+    return this.repository.findOne({ relations: ['answers'] });
   }
 }

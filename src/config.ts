@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import fs from "fs";
 import { validate, IsNotEmpty } from "class-validator";
 
@@ -36,7 +35,6 @@ export class Config {
   }
 }
 
-dotenv.config();
 Config.init();
 Config.getGCP();
 

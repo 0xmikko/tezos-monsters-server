@@ -10,6 +10,7 @@ import { ConnectionOptions } from "typeorm/connection/ConnectionOptions";
 import { Container } from "typedi";
 import { SocketRouter } from "./controllers/socketRouter";
 import { ProfilesController } from "./controllers/proflieController";
+import { AnswersController } from "./controllers/answersController";
 
 export const createApp = async (): Promise<Application> => {
   // Connecting Database
@@ -26,7 +27,7 @@ export const createApp = async (): Promise<Application> => {
   app.use(morganLogger);
   useExpressServer(app, {
     authorizationChecker: authChecker,
-    controllers: [StoryPagesController],
+    controllers: [StoryPagesController, AnswersController],
     cors: {
       origin: "*",
     },
@@ -47,8 +48,7 @@ export const createApp = async (): Promise<Application> => {
     pingInterval: 50000,
   });
   try {
-    const profilesController = Container.get(ProfilesController
-    );
+    const profilesController = Container.get(ProfilesController);
     const socketRouter = new SocketRouter([profilesController]);
     socketRouter.connect(io);
   } catch (e) {

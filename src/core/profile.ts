@@ -1,5 +1,4 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
-import {StoryPage, StoryPageUpdateDTO} from "./storyPage";
 import {BasicRepositoryI} from "./basic";
 
 @Entity()
