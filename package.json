@@ -12,8 +12,8 @@
     "typeorm:gen": "ts-node ./node_modules/typeorm/cli.js migration:generate --config ./src/ormconfig.ts",
     "typeorm:migrate": "ts-node ./node_modules/.bin/typeorm migration:run --config ./src/ormconfig.ts",
     "typeorm:revert": "ts-node ./node_modules/.bin/typeorm migration:revert --config ./src/ormconfig.ts",
-    "start": "pm2-runtime pm2.config.js --env production",
-    "start-forever": "./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts "
+    "start-pm2": "pm2-runtime pm2.config.js --env production",
+    "start": "./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts "
   },
   "resolutions": {
     "tslib": "1.11.2"
