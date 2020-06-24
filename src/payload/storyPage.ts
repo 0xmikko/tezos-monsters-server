@@ -14,6 +14,8 @@ export class StoryPageUpdateDTO {
   @IsNotEmpty()
   isCodePage: boolean;
 
+  contractName: string;
+
   initialCode: string;
 
   codeRightAnswer: string;
@@ -23,6 +25,8 @@ export class StoryPageUpdateDTO {
   parameters: string;
 
   storage: string;
+
+  expected: string;
 }
 
 export function mapDTOtoStoryPage(
@@ -33,9 +37,11 @@ export function mapDTOtoStoryPage(
   storyPage.text = dto.text;
   storyPage.step = dto.step;
   storyPage.isCodePage = dto.isCodePage;
+  storyPage.contractName = dto.contractName;
   storyPage.initialCode = dto.initialCode;
   storyPage.codeRightAnswer = dto.codeRightAnswer;
   storyPage.entrypoint = dto.entrypoint;
   storyPage.parameters = dto.parameters;
   storyPage.storage = dto.storage;
+  storyPage.expected = dto.expected;
 }

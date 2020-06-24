@@ -30,6 +30,9 @@ export class StoryPage {
   isCodePage: boolean;
 
   @Column({ default: "" })
+  contractName: string;
+
+  @Column({ default: "" })
   initialCode: string;
 
   @Column({ default: "" })
@@ -43,6 +46,9 @@ export class StoryPage {
 
   @Column({ default: "" })
   storage: string;
+
+  @Column({ default: "" })
+  expected: string;
 
   @OneToMany((type) => Answer, (answer) => answer.storyPage)
   answers: Answer[];
