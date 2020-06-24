@@ -36,7 +36,7 @@ export class TypeORMRepository<T> implements BasicRepositoryI<T> {
     });
   }
 
-  upsert(item: T): Promise<T> {
+  save(item: T): Promise<T> {
     return getManager().getRepository<T>(this._entityClass).save(item);
   }
 

@@ -12,13 +12,12 @@ import {
   UploadedFiles,
   Req,
 } from "routing-controllers";
-import { AnswerNotFoundError } from "../errors/answerNotFoundError";
+import { AnswerNotFoundError } from "../errors/answers";
 
 import { configure, getLogger, Logger } from "log4js";
 import { Container, Inject } from "typedi";
 import { AnswersService } from "../services/answersService";
 import { User } from "../core/user";
-import { ProfileService } from "../services/profileService";
 import { AnswerCreateDTO, AnswerUpdateDTO } from "../payload/answers";
 import { fileUploadOptions } from "../config/multer";
 

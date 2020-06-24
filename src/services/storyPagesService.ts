@@ -10,35 +10,57 @@ import { Storage } from "@google-cloud/storage";
 import config from "../config";
 import { GoogleStorage } from "../repository/googleStorage";
 import {mapDTOtoStoryPage, StoryPageUpdateDTO} from "../payload/storyPage";
+import {getLogger, Logger} from "log4js";
 
 @Service()
 export class StoryPagesService implements StoryPagesServiceI {
-  @Inject("StoryPagesRepository")
+
+  @Inject()
   private _repository: StoryPagesRepository;
 
-  retrieve(user: Profile, id: string): Promise<StoryPage | undefined> {
-    return this._repository.getFull(id);
+  private _logger: Logger;
+
+
+  constructor() {
+    this._logger = getLogger();
+    this._logger.level = "debug";
   }
 
-  async getPageIdByStep(step: number): Promise<string> {
+
+  async retrieve(id: string): Promise<StoryPage | undefined> {
+    try {
+      return await this._repository.getFull(id);
+    } catch (e) {
+      this._logger.error(e);
+      throw StoryPageNotFoundError;
+    }
+  }
+
+  async getPageByStep(step: number): Promise<string> {
     const page = await this._repository.getPageByStep(step);
     return page === undefined ? "error" : page.id;
   }
 
-  list(): Promise<StoryPage[] | undefined> {
-    return this._repository.list();
+  async list(): Promise<StoryPage[] | undefined> {
+    try {
+      return await this._repository.listOrderedByStep();
+    } catch (e) {
+      this._logger.error(e);
+      throw StoryPageNotFoundError;
+    }
   }
+
   async create(dto: StoryPageUpdateDTO): Promise<StoryPage> {
     const storyPage = new StoryPage();
     mapDTOtoStoryPage(dto, storyPage);
-    return this._repository.upsert(storyPage);
+    return this._repository.save(storyPage);
   }
 
   async update(id: string, dto: StoryPageUpdateDTO): Promise<StoryPage> {
     const storyPage = await this._repository.findOne(id);
     if (storyPage === undefined) throw StoryPageNotFoundError;
     mapDTOtoStoryPage(dto, storyPage);
-    return this._repository.upsert(storyPage);
+    return this._repository.save(storyPage);
   }
 
   async uploadImage(
@@ -55,6 +77,6 @@ export class StoryPagesService implements StoryPagesServiceI {
       filename
     );
 
-    return await this._repository.upsert(storyPage);
+    return await this._repository.save(storyPage);
   }
 }

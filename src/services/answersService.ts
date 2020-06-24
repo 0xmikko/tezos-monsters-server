@@ -1,6 +1,6 @@
 import { Inject, Service } from "typedi";
 import { Answer, AnswersServiceI } from "../core/answer";
-import { AnswerNotFoundError } from "../errors/answerNotFoundError";
+import { AnswerNotFoundError, AnswerFromIlligalStepError } from "../errors/answers";
 import { AnswersRepository } from "../repository/answersRepository";
 import config from "../config";
 import { StoryPagesRepository } from "../repository/storyPagesRepository";
@@ -30,9 +30,8 @@ export class AnswersService implements AnswersServiceI {
     this._logger.level = "debug";
   }
 
-  retrieve(id: string): Promise<Answer | undefined> {
-
-    return this._repository.findOne(id);
+  async retrieve(id: string): Promise<Answer | undefined> {
+    return this._repository.getFull(id);
   }
 
   async create(dto: AnswerCreateDTO): Promise<Answer> {
@@ -46,14 +45,14 @@ export class AnswersService implements AnswersServiceI {
     this._logger.debug(answer)
     this._logger.debug(storyPage)
 
-    return this._repository.upsert(answer);
+    return this._repository.save(answer);
   }
 
   async update(id: string, dto: AnswerUpdateDTO): Promise<Answer> {
     const answer = await this._repository.findOne(id);
     if (answer === undefined) throw AnswerNotFoundError;
     mapDtoToAnswer(dto, answer);
-    return this._repository.upsert(answer);
+    return this._repository.save(answer);
   }
 
   async uploadIcon(
@@ -70,6 +69,6 @@ export class AnswersService implements AnswersServiceI {
       filename
     );
 
-    return await this._repository.upsert(answer);
+    return await this._repository.save(answer);
   }
 }

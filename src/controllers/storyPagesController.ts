@@ -14,22 +14,21 @@ import {
 } from "routing-controllers";
 import { StoryPageNotFoundError } from "../errors/storyPageNotFoundError";
 import { configure, getLogger, Logger } from "log4js";
-import { Container, Inject } from "typedi";
+import {Container, Inject, Service} from "typedi";
 import { StoryPagesService } from "../services/storyPagesService";
-import multer from "multer";
-import { Request } from "express";
-import * as path from "path";
 import { User } from "../core/user";
 import { ProfileService } from "../services/profileService";
 import { StoryPageUpdateDTO } from "../payload/storyPage";
 import { fileUploadOptions } from "../config/multer";
+import {ProfileNotFoundError} from "../errors/profileErrors";
 
 @JsonController("/api/stories")
+@Service()
 export class StoryPagesController {
   @Inject()
   private _service: StoryPagesService;
 
-  @Inject("profiles.service")
+  @Inject()
   private _profileService: ProfileService;
 
   private _logger: Logger;
@@ -38,7 +37,7 @@ export class StoryPagesController {
     this._logger = getLogger();
     this._logger.level = "debug";
     this._service = Container.get(StoryPagesService);
-    this._profileService = Container.get("profiles.service");
+    this._profileService = Container.get(ProfileService);
   }
 
   @Get("/")
@@ -47,15 +46,25 @@ export class StoryPagesController {
     return this._service.list();
   }
 
-  @Get("/:id")
+
+  @Get("/current")
   @OnUndefined(StoryPageNotFoundError)
+  async getCurrentPage(
+      @CurrentUser({ required: true }) user: User,
+  ) {
+    const profile = await this._profileService.retrieve(user.id);
+    if (profile === undefined) throw ProfileNotFoundError;
+    return await this._service.retrieve(profile.currentPage);
+  }
+
+  @Get("/editor/:id")
+  @OnUndefined(StoryPageNotFoundError)
+  @Authorized("ADMIN")
   async retrieve(
     @CurrentUser({ required: true }) user: User,
     @Param("id") id: string
   ) {
-    const profile = await this._profileService.retrieve(user.id);
-    if (profile === undefined) throw "UserNotFound";
-    return await this._service.retrieve(profile, id);
+    return await this._service.retrieve(id);
   }
 
   @Post("/")

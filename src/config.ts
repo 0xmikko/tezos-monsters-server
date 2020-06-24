@@ -13,11 +13,19 @@ export class Config {
   @IsNotEmpty()
   static storyPageImagesBucket: string;
 
+  @IsNotEmpty()
+  static codeCheckerUrl: string;
+
+  @IsNotEmpty()
+  static codeCheckerToken: string;
+
   static init() {
     Config.port = parseInt(process.env.PORT || "4000");
     Config.database_url = process.env.DATABASE_URL || "";
     Config.jwt_secret = process.env.JWT_SECRET || "";
     Config.storyPageImagesBucket = process.env.GCP_PICUTRES_BUCKET || "";
+    Config.codeCheckerUrl = process.env.CODE_CHECKER_URL || "";
+    Config.codeCheckerToken = process.env.CODE_CHECKER_TOKEN || "";
   }
 
   static getGCP() {

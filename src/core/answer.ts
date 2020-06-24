@@ -30,6 +30,9 @@ export class Answer {
   @Column({default: ''})
   icon: string;
 
+  @Column({default: 0})
+  reward: number;
+
   @ManyToOne((type) => StoryPage, (storyPage) => storyPage.answers)
   storyPage: StoryPage;
 }

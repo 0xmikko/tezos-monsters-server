@@ -12,10 +12,14 @@ export class StoryPagesRepository extends TypeORMRepository<StoryPage>
   }
 
   getPageByStep(step: number): Promise<StoryPage | undefined> {
-    return this.repository.findOne({ where: { step } });
+    return this.repository.findOne({ where: { step }, relations: ['answers'] });
   }
 
   getFull(id : string) :  Promise<StoryPage | undefined> {
-    return this.repository.findOne({ relations: ['answers'] });
+    return this.repository.findOne(id, { relations: ['answers'] });
+  }
+
+  listOrderedByStep() : Promise<StoryPage[] | undefined> {
+    return this.repository.find({order: {step: "ASC"}});
   }
 }

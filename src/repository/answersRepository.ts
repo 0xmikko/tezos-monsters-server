@@ -11,4 +11,10 @@ export class AnswersRepository extends TypeORMRepository<Answer>
   constructor() {
     super(Answer);
   }
+
+
+  getFull(id : string) :  Promise<Answer | undefined> {
+    return this.repository.findOne(id, { relations: ['storyPage'] });
+  }
+
 }

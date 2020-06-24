@@ -21,6 +21,13 @@ export class Profile {
     @Column({default: 1})
     currentStep: number;
 
+    @Column({default: true})
+    isStepSolved: boolean;
+
+    @Column({default: 0})
+    screenTime: number;
+
+    // ToDo: move to payload
     currentPage: string;
 }
 

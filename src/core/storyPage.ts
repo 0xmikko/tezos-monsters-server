@@ -27,10 +27,19 @@ export class StoryPage {
   image: string;
 
   @Column({ default: false })
-  hasQuestions: boolean;
-
-  @Column({ default: false })
   isCodePage: boolean;
+
+  @Column({ default: "" })
+  codeRightAnswer : string;
+
+  @Column({ default: "" })
+  entrypoint: string;
+
+  @Column({ default: "" })
+  parameters: string;
+
+  @Column({ default: "" })
+  storage: string;
 
   @OneToMany((type) => Answer, (answer) => answer.storyPage)
   answers: Answer[];
@@ -39,7 +48,7 @@ export class StoryPage {
 export interface StoryPagesRepositoryI extends BasicRepositoryI<StoryPage> {}
 
 export interface StoryPagesServiceI {
-  retrieve(user: Profile, id: string): Promise<StoryPage | undefined>;
+  retrieve(id: string): Promise<StoryPage | undefined>;
   list(): Promise<StoryPage[] | undefined>;
   update(id: string, dto: StoryPageUpdateDTO): Promise<StoryPage>;
 }

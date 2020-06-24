@@ -11,6 +11,7 @@ import { Container } from "typedi";
 import { SocketRouter } from "./controllers/socketRouter";
 import { ProfilesController } from "./controllers/proflieController";
 import { AnswersController } from "./controllers/answersController";
+import { GameController } from "./controllers/gameController";
 
 export const createApp = async (): Promise<Application> => {
   // Connecting Database
@@ -49,7 +50,8 @@ export const createApp = async (): Promise<Application> => {
   });
   try {
     const profilesController = Container.get(ProfilesController);
-    const socketRouter = new SocketRouter([profilesController]);
+    const gameController = Container.get(GameController);
+    const socketRouter = new SocketRouter([profilesController, gameController]);
     socketRouter.connect(io);
   } catch (e) {
     console.log("Cant start socket controllers", e);

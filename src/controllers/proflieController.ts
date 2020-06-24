@@ -4,61 +4,56 @@
  */
 
 import {
-    ProfileServiceI,
-} from '../core/profile';
-import {
-    SocketController,
-    socketListeners,
-    SocketWithToken,
-} from './socketRouter';
-import {SocketUpdate} from '../core/operations';
-import {Inject, Service} from "typedi";
-import {ProfileService} from "../services/profileService";
+  SocketController,
+  socketListeners,
+  SocketWithToken,
+} from "./socketRouter";
+import { SocketUpdate } from "../core/operations";
+import { Inject, Service } from "typedi";
+import { ProfileService } from "../services/profileService";
 
-@Service("profiles.controller")
+@Service()
 export class ProfilesController implements SocketController {
+  @Inject()
+  private _service: ProfileService;
 
-    @Inject("profiles.service")
-    private _service: ProfileService;
-    private _namespace = 'profile';
+  private _namespace = "profile";
+
+  get namespace(): string {
+    return this._namespace;
+  }
+
+  getListeners(socket: SocketWithToken, userId: string): socketListeners {
+    return {
+      retrieve: async (data: string, opHash: string) => {
+        try {
+          const result = await this._service.retrieve(userId);
+          console.log(result);
+          socket.emit(this._namespace + ":updateDetails", result);
+          socket.ok(opHash);
+        } catch (e) {
+          console.log(e);
+          socket.failure(opHash, e);
+        }
+      },
+
+      nextPage: async (data: string, opHash: string) => {
+        try {
+          const result = await this._service.retrieve(userId);
+          console.log(result);
+          socket.emit(this._namespace + ":updateDetails", result);
+          socket.ok(opHash);
+        } catch (e) {
+          console.log(e);
+          socket.failure(opHash, e);
+        }
+      },
+    };
 
 
-    get namespace(): string {
-        return this._namespace;
-    }
+  }
 
-    getListeners(socket: SocketWithToken, userId: string): socketListeners {
-        return {
-
-            retrieve: async (data: string, opHash: string) => {
-                try {
-                    const result = await this._service.retrieve(userId);
-                    console.log(result);
-                    socket.emit(this._namespace + ':updateDetails', result);
-                    socket.ok(opHash);
-                } catch (e) {
-                    console.log(e);
-                    socket.failure(opHash, e);
-                }
-            },
-
-            // update: async (dto: ProfileUpdateDTO, opHash: string) => {
-            //     console.log(dto);
-            //     try {
-            //         const result = await this._service.update(userId, dto);
-            //         socket.emit(this._namespace + ':updateDetails', result);
-            //         socket.ok(opHash);
-            //     } catch (e) {
-            //         console.log(e);
-            //         socket.failure(opHash, e);
-            //     }
-            // },
-
-
-        };
-    }
-
-    update(): SocketUpdate[] {
-        return this._service.getUpdateQueue();
-    }
+  update(): SocketUpdate[] {
+    return this._service.getUpdateQueue();
+  }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="TezosMonsterDB" uuid="6f1d9ada-53d2-4dea-97f2-9403f99684d9">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-34-230-231-71.compute-1.amazonaws.com:5432/d7alpn018ue6bm</jdbc-url>
+    </data-source>
+  </component>
+</project>

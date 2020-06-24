@@ -6,7 +6,7 @@
 import SocketIO, {Socket} from 'socket.io';
 import socketioJwt from 'socketio-jwt';
 import config from '../config';
-import {tokenData} from '../core/users';
+import {tokenData} from '../core/user';
 import {SocketUpdate, STATUS} from '../core/operations';
 
 export type socketListeners = Record<string, (...args: any[]) => Promise<void>>;
