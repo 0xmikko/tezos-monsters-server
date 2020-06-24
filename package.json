@@ -12,7 +12,7 @@
     "typeorm:gen": "ts-node ./node_modules/typeorm/cli.js migration:generate --config ./src/ormconfig.ts",
     "typeorm:migrate": "ts-node ./node_modules/.bin/typeorm migration:run --config ./src/ormconfig.ts",
     "typeorm:revert": "ts-node ./node_modules/.bin/typeorm migration:revert --config ./src/ormconfig.ts",
-    "start": "./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v -c  ./node_modules/.bin/ts-node ./src/index.ts "
+    "start": "pm2 start app.ts --watch ./src/index.ts"
   },
   "resolutions": {
     "tslib": "1.11.2"
@@ -50,6 +50,7 @@
     "multer": "^1.4.2",
     "node-cache": "^5.1.0",
     "pg": "^8.2.1",
+    "pm2": "^4.4.0",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0-alpha.4",
     "socket.io": "^2.3.0",
