@@ -14,6 +14,8 @@ export class StoryPageUpdateDTO {
   @IsNotEmpty()
   isCodePage: boolean;
 
+  initialCode: string;
+
   codeRightAnswer: string;
 
   entrypoint: string;
@@ -31,7 +33,9 @@ export function mapDTOtoStoryPage(
   storyPage.text = dto.text;
   storyPage.step = dto.step;
   storyPage.isCodePage = dto.isCodePage;
+  storyPage.initialCode = dto.initialCode;
   storyPage.codeRightAnswer = dto.codeRightAnswer;
   storyPage.entrypoint = dto.entrypoint;
+  storyPage.parameters = dto.parameters;
   storyPage.storage = dto.storage;
 }

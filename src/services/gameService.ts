@@ -17,7 +17,7 @@ import { StoryPageNotFoundError } from "../errors/storyPageNotFoundError";
 import { StoryPagesRepository } from "../repository/storyPagesRepository";
 import { AnswerFromIlligalStepError } from "../errors/answers";
 import { AnswersRepository } from "../repository/answersRepository";
-import {StoryPage} from "../core/storyPage";
+import { StoryPage } from "../core/storyPage";
 
 @Service()
 export class GameService {
@@ -32,8 +32,7 @@ export class GameService {
 
   private _updateQueue: SocketUpdate[] = [];
 
-
-  async getCurrentPage(userId: string) : Promise<StoryPage> {
+  async getCurrentPage(userId: string): Promise<StoryPage> {
     const profile = await this._profilesRepository.findOne(userId);
     if (profile === undefined) throw ProfileNotFoundError;
 
@@ -43,7 +42,9 @@ export class GameService {
       this._profilesRepository.save(profile);
     }
 
-    const storyPage = await this._storyPageRepository.getPageByStep(profile.currentStep);
+    const storyPage = await this._storyPageRepository.getPageByStep(
+      profile.currentStep
+    );
     if (storyPage === undefined) throw StoryPageNotFoundError;
     return storyPage;
   }
@@ -76,14 +77,15 @@ export class GameService {
       profile.currentStep
     );
     if (storyPage === undefined) throw StoryPageNotFoundError;
-    const codeCheckerRequest = new CodeCheckerRequest(dto, storyPage);
 
-    const checkResult = await CodeCheckerRepository.checkCode(dto);
+    const checkResult = await CodeCheckerRepository.checkCode(
+      new CodeCheckerRequest(dto, storyPage)
+    );
     console.log(checkResult);
 
     if (!checkResult.error) {
       profile.isStepSolved = true;
-      this._profilesRepository.save(profile);
+      await this._profilesRepository.save(profile);
     }
     return checkResult;
   }

@@ -30,6 +30,9 @@ export class StoryPage {
   isCodePage: boolean;
 
   @Column({ default: "" })
+  initialCode: string;
+
+  @Column({ default: "" })
   codeRightAnswer : string;
 
   @Column({ default: "" })
