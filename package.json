@@ -12,7 +12,7 @@
     "typeorm:gen": "ts-node ./node_modules/typeorm/cli.js migration:generate --config ./src/ormconfig.ts",
     "typeorm:migrate": "ts-node ./node_modules/.bin/typeorm migration:run --config ./src/ormconfig.ts",
     "typeorm:revert": "ts-node ./node_modules/.bin/typeorm migration:revert --config ./src/ormconfig.ts",
-    "start": "pm2-runtime pm2.config.js --env production"
+    "start": "./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts "
   },
   "resolutions": {
     "tslib": "1.11.2"
@@ -42,6 +42,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
+    "forever": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.3.0",
     "moment": "^2.25.3",
