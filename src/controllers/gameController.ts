@@ -35,11 +35,14 @@ export class GameController implements SocketController {
     return {
       getCurrentPage: async (payload: void, opHash: string) => {
         try {
-          const updatedProfile = await this._profileService.retrieve(userId);
-          socket.emit("profile:updateDetails", updatedProfile);
+
 
           const storyPage = await this._service.getCurrentPage(userId);
           socket.emit("game:currentPage", storyPage);
+
+          const updatedProfile = await this._profileService.retrieve(userId);
+          socket.emit("profile:updateDetails", updatedProfile);
+
           socket.ok(opHash);
         } catch (e) {
           console.log(e);
@@ -54,12 +57,17 @@ export class GameController implements SocketController {
           // ToDo: think about need to have separate exception for wrong req
           if (error.length > 0) throw WrongCodeReviewRequestError;
 
-          const updatedProfile = await this._service.proceedAnswer(userId, dto);
-          socket.emit("profile:updateDetails", updatedProfile);
+
+
+
+
+          await this._service.proceedAnswer(userId, dto);
 
           const storyPage = await this._service.getCurrentPage(userId);
           socket.emit("game:currentPage", storyPage);
 
+          const updatedProfile = await this._profileService.retrieve(userId);
+          socket.emit("profile:updateDetails", updatedProfile);
 
           socket.ok(opHash);
         } catch (e) {

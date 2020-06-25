@@ -39,7 +39,7 @@ export class GameService {
     if (profile.isStepSolved) {
       profile.currentStep++;
       profile.isStepSolved = false;
-      this._profilesRepository.save(profile);
+      await this._profilesRepository.save(profile);
     }
 
     const storyPage = await this._storyPageRepository.getPageByStep(
