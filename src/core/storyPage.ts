@@ -27,6 +27,9 @@ export class StoryPage {
   @Column({ default: false })
   isCodePage: boolean;
 
+  @Column({ default: false })
+  isMonsterPage: boolean;
+
   @Column({ default: "" })
   contractName: string;
 

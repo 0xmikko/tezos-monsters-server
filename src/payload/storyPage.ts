@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 import { StoryPage } from "../core/storyPage";
+import {Column} from "typeorm";
 
 export class StoryPageUpdateDTO {
   @IsNotEmpty()
@@ -13,6 +14,9 @@ export class StoryPageUpdateDTO {
 
   @IsNotEmpty()
   isCodePage: boolean;
+
+  @Column({ default: false })
+  isMonsterPage: boolean;
 
   contractName: string;
 
@@ -29,6 +33,7 @@ export function mapDTOtoStoryPage(
   storyPage.text = dto.text;
   storyPage.step = dto.step;
   storyPage.isCodePage = dto.isCodePage;
+  storyPage.isMonsterPage = dto.isMonsterPage;
   storyPage.contractName = dto.contractName;
   storyPage.initialCode = dto.initialCode;
   storyPage.codeRightAnswer = dto.codeRightAnswer;
