@@ -93,7 +93,7 @@ export class GameService {
 
       if (checkResult.error) {
         checkResult.result =
-          `Error happened during test #${i} of ${testCases.length}'n` +
+          `Error happened during test #${i} of ${testCases.length}\n` +
           checkResult.result;
         return checkResult;
       }
