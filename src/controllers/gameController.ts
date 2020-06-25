@@ -35,6 +35,9 @@ export class GameController implements SocketController {
     return {
       getCurrentPage: async (payload: void, opHash: string) => {
         try {
+          const updatedProfile = await this._profileService.retrieve(userId);
+          socket.emit("profile:updateDetails", updatedProfile);
+
           const storyPage = await this._service.getCurrentPage(userId);
           socket.emit("game:currentPage", storyPage);
           socket.ok(opHash);
@@ -52,11 +55,12 @@ export class GameController implements SocketController {
           if (error.length > 0) throw WrongCodeReviewRequestError;
 
           const updatedProfile = await this._service.proceedAnswer(userId, dto);
+          socket.emit("profile:updateDetails", updatedProfile);
 
           const storyPage = await this._service.getCurrentPage(userId);
           socket.emit("game:currentPage", storyPage);
 
-          socket.emit("profile:updateDetails", updatedProfile);
+
           socket.ok(opHash);
         } catch (e) {
           console.log(e);
@@ -77,6 +81,9 @@ export class GameController implements SocketController {
           );
 
           socket.emit(this._namespace + ":codeReviewResult", codeReviewResult);
+
+          const updatedProfile = await this._profileService.retrieve(userId);
+          socket.emit("profile:updateDetails", updatedProfile);
           socket.ok(opHash);
         } catch (e) {
           console.log(e);

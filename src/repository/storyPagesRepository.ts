@@ -10,11 +10,11 @@ export class StoryPagesRepository extends TypeORMRepository<StoryPage>
   }
 
   getPageByStep(step: number): Promise<StoryPage | undefined> {
-    return this.repository.findOne({ where: { step }, relations: ['answers'] });
+    return this.repository.findOne({ where: { step }, relations: ['answers', 'testCases'] });
   }
 
   getFull(id : string) :  Promise<StoryPage | undefined> {
-    return this.repository.findOne(id, { relations: ['answers'] });
+    return this.repository.findOne(id, { relations: ['answers', 'testCases'] });
   }
 
   listOrderedByStep() : Promise<StoryPage[] | undefined> {
