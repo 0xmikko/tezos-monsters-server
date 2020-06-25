@@ -19,14 +19,6 @@ export class StoryPageUpdateDTO {
   initialCode: string;
 
   codeRightAnswer: string;
-
-  entrypoint: string;
-
-  parameters: string;
-
-  storage: string;
-
-  expected: string;
 }
 
 export function mapDTOtoStoryPage(
@@ -40,8 +32,5 @@ export function mapDTOtoStoryPage(
   storyPage.contractName = dto.contractName;
   storyPage.initialCode = dto.initialCode;
   storyPage.codeRightAnswer = dto.codeRightAnswer;
-  storyPage.entrypoint = dto.entrypoint;
-  storyPage.parameters = dto.parameters;
-  storyPage.storage = dto.storage;
-  storyPage.expected = dto.expected;
+
 }

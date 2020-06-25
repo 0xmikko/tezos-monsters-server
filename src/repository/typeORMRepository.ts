@@ -1,5 +1,5 @@
 import { getManager, ObjectType, Repository } from "typeorm";
-import { BasicRepositoryI } from "../core/basic";
+import { BasicRepositoryI } from "./basicRepository";
 
 export class TypeORMRepository<T> implements BasicRepositoryI<T> {
   private _entityClass: ObjectType<T>;

@@ -1,6 +1,6 @@
 import { Inject, Service } from "typedi";
-import { Answer, AnswersServiceI } from "../core/answer";
-import { AnswerNotFoundError, AnswerFromIlligalStepError } from "../errors/answers";
+import { Answer } from "../core/answer";
+import { AnswerNotFoundError } from "../errors/answers";
 import { AnswersRepository } from "../repository/answersRepository";
 import config from "../config";
 import { StoryPagesRepository } from "../repository/storyPagesRepository";
@@ -11,11 +11,10 @@ import {
   mapDtoToAnswer,
 } from "../payload/answers";
 import { GoogleStorage } from "../repository/googleStorage";
-import {getLogger, Logger} from "log4js";
+import { getLogger, Logger } from "log4js";
 
 @Service()
-export class AnswersService implements AnswersServiceI {
-
+export class AnswersService {
   @Inject()
   private _repository: AnswersRepository;
 
@@ -23,7 +22,6 @@ export class AnswersService implements AnswersServiceI {
   private _storyRepository: StoryPagesRepository;
 
   private _logger: Logger;
-
 
   constructor() {
     this._logger = getLogger();
@@ -42,8 +40,8 @@ export class AnswersService implements AnswersServiceI {
     mapDtoToAnswer(dto, answer);
     answer.storyPage = storyPage;
 
-    this._logger.debug(answer)
-    this._logger.debug(storyPage)
+    this._logger.debug(answer);
+    this._logger.debug(storyPage);
 
     return this._repository.save(answer);
   }

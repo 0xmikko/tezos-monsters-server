@@ -12,6 +12,7 @@ import { SocketRouter } from "./controllers/socketRouter";
 import { ProfilesController } from "./controllers/proflieController";
 import { AnswersController } from "./controllers/answersController";
 import { GameController } from "./controllers/gameController";
+import {TestCasesController} from "./controllers/testCaseController";
 
 export const createApp = async (): Promise<Application> => {
   // Connecting Database
@@ -28,7 +29,7 @@ export const createApp = async (): Promise<Application> => {
   app.use(morganLogger);
   useExpressServer(app, {
     authorizationChecker: authChecker,
-    controllers: [StoryPagesController, AnswersController],
+    controllers: [StoryPagesController, AnswersController, TestCasesController],
     cors: {
       origin: "*",
     },

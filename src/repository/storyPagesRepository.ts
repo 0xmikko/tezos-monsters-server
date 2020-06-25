@@ -1,12 +1,10 @@
 import { Service } from "typedi";
-import { getManager } from "typeorm";
-
-import { StoryPage, StoryPagesRepositoryI } from "../core/storyPage";
+import { StoryPage } from "../core/storyPage";
 import { TypeORMRepository } from "./typeORMRepository";
 
-@Service("StoryPagesRepository")
+@Service()
 export class StoryPagesRepository extends TypeORMRepository<StoryPage>
-  implements StoryPagesRepositoryI {
+   {
   constructor() {
     super(StoryPage);
   }

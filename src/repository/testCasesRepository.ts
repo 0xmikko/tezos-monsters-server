@@ -1,14 +1,14 @@
 import { Service } from "typedi";
 import { TypeORMRepository } from "./typeORMRepository";
-import { Answer } from "../core/answer";
+import { TestCase } from "../core/testCase";
 
 @Service()
-export class AnswersRepository extends TypeORMRepository<Answer> {
+export class TestCasesRepository extends TypeORMRepository<TestCase> {
   constructor() {
-    super(Answer);
+    super(TestCase);
   }
 
-  getFull(id: string): Promise<Answer | undefined> {
+  getFull(id: string): Promise<TestCase | undefined> {
     return this.repository.findOne(id, { relations: ["storyPage"] });
   }
 }

@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 import { StoryPage } from "../core/storyPage";
+import {TestCase} from "../core/testCase";
 
 export class CodeRequestDTO {
   @IsNotEmpty()
@@ -13,12 +14,12 @@ export class CodeCheckerRequest {
   parameters: string;
   storage: string;
 
-  constructor(dto: CodeRequestDTO, storyPage: StoryPage) {
+  constructor(dto: CodeRequestDTO, testCase: TestCase) {
     this.code = dto.code;
     this.syntax = "pascaligo";
-    this.entrypoint = storyPage.entrypoint;
-    this.parameters = storyPage.parameters;
-    this.storage = storyPage.storage;
+    this.entrypoint = testCase.entrypoint;
+    this.parameters = testCase.parameters;
+    this.storage = testCase.storage;
   }
 }
 

@@ -1,19 +1,16 @@
 import { Container, Inject, Service } from "typedi";
 import {
   StoryPage,
-  StoryPagesServiceI,
 } from "../core/storyPage";
 import { StoryPageNotFoundError } from "../errors/storyPageNotFoundError";
-import { Profile } from "../core/profile";
 import { StoryPagesRepository } from "../repository/storyPagesRepository";
-import { Storage } from "@google-cloud/storage";
 import config from "../config";
 import { GoogleStorage } from "../repository/googleStorage";
 import {mapDTOtoStoryPage, StoryPageUpdateDTO} from "../payload/storyPage";
 import {getLogger, Logger} from "log4js";
 
 @Service()
-export class StoryPagesService implements StoryPagesServiceI {
+export class StoryPagesService  {
 
   @Inject()
   private _repository: StoryPagesRepository;

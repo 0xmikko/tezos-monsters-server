@@ -78,15 +78,31 @@ export class GameService {
     );
     if (storyPage === undefined) throw StoryPageNotFoundError;
 
-    const checkResult = await CodeCheckerRepository.checkCode(
-      new CodeCheckerRequest(dto, storyPage)
-    );
-    console.log(checkResult);
+    let checkResult: CodeCheckResultDTO | undefined;
 
-    if (!checkResult.error) {
-      profile.isStepSolved = true;
-      await this._profilesRepository.save(profile);
+    const testCases = storyPage.testCases.sort((t1, t2) =>
+      t1.index > t2.index ? 1 : -1
+    );
+
+    for (let i = 0; i < testCases.length; i++) {
+      const curentTestCase = testCases[i];
+      checkResult = await CodeCheckerRepository.checkCode(
+        new CodeCheckerRequest(dto, curentTestCase)
+      );
+      console.log(checkResult);
+
+      if (checkResult.error) {
+        checkResult.result =
+          `Error happened during test #${i} of ${testCases.length}'n` +
+          checkResult.result;
+        return checkResult;
+      }
     }
+    profile.isStepSolved = true;
+    await this._profilesRepository.save(profile);
+
+    if (checkResult === undefined) throw "Error during tests";
+
     return checkResult;
   }
 

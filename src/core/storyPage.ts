@@ -4,10 +4,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { BasicRepositoryI } from "./basic";
 import { Answer } from "./answer";
-import { Profile } from "./profile";
-import { StoryPageUpdateDTO } from "../payload/storyPage";
+import {TestCase} from "./testCase";
 
 @Entity()
 export class StoryPage {
@@ -38,26 +36,9 @@ export class StoryPage {
   @Column({ default: "" })
   codeRightAnswer : string;
 
-  @Column({ default: "" })
-  entrypoint: string;
-
-  @Column({ default: "" })
-  parameters: string;
-
-  @Column({ default: "" })
-  storage: string;
-
-  @Column({ default: "" })
-  expected: string;
-
   @OneToMany((type) => Answer, (answer) => answer.storyPage)
   answers: Answer[];
-}
 
-export interface StoryPagesRepositoryI extends BasicRepositoryI<StoryPage> {}
-
-export interface StoryPagesServiceI {
-  retrieve(id: string): Promise<StoryPage | undefined>;
-  list(): Promise<StoryPage[] | undefined>;
-  update(id: string, dto: StoryPageUpdateDTO): Promise<StoryPage>;
+  @OneToMany((type) => TestCase, (testCase) => testCase.storyPage)
+  testCases: TestCase[];
 }

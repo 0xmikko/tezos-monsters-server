@@ -7,7 +7,7 @@ import { StoryPage } from "./storyPage";
 import {AnswerCreateDTO, AnswerUpdateDTO} from "../payload/answers";
 
 @Entity()
-export class Answer {
+export class TestCase {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -17,19 +17,19 @@ export class Answer {
   @Column({default: ''})
   name: string;
 
-  @Column({default: false})
-  isCorrect: boolean;
+  @Column({ default: "" })
+  entrypoint: string;
 
-  @Column({default: ''})
-  message: string;
+  @Column({ default: "" })
+  parameters: string;
 
-  @Column({default: ''})
-  icon: string;
+  @Column({ default: "" })
+  storage: string;
 
-  @Column({default: 0})
-  reward: number;
+  @Column({ default: "" })
+  expected: string;
 
-  @ManyToOne((type) => StoryPage, (storyPage) => storyPage.answers)
+  @ManyToOne((type) => StoryPage, (storyPage) => storyPage.testCases)
   storyPage: StoryPage;
 }
 

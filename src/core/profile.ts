@@ -1,5 +1,4 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
-import {BasicRepositoryI} from "./basic";
 
 @Entity()
 export class Profile {
@@ -29,10 +28,4 @@ export class Profile {
 
     // ToDo: move to payload
     currentPage: string;
-}
-
-export interface ProfilesRepositoryI extends BasicRepositoryI<Profile> {}
-
-export interface ProfileServiceI {
-    retrieve(id: string): Promise<Profile | undefined>;
 }
