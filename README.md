@@ -15,6 +15,18 @@ Editor: https://github.com/MikaelLazarev/tezos-monsters-editor
 Code checker service: https://github.com/MikaelLazarev/tezos-monsters-ligo-server  
 Monster factory service: https://github.com/MikaelLazarev/tezos-monsters-factory  
 
+## Problem
+
+Tezos provides unique blockchain features for developers, however, there is a big barrier to start to use it, you have to learn a new programming language. For many blockchain 
+developers it's a barrier.
+
+## Inspiration
+
+I've learnt and loved solidity playing with CryptoZombies. It's amazing game and very valuable resourse for developers. 
+
+## Solution
+In Tezos-Monsters I've combined story with solving programming tasks. All tasks are design to provide learning in convinient way.
+
 ## How to install server
 
 ### Prerequisites
