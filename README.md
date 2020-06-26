@@ -29,6 +29,8 @@ I've learnt and loved solidity playing with CryptoZombies. It's amazing game and
 ## Solution
 In Tezos-Monsters I've combined story with solving programming tasks. All tasks are design to provide learning in convinient way.
 
+![Screenshot 2020-06-26 at 03 43 37](https://user-images.githubusercontent.com/26343374/85809018-4247cf80-b75f-11ea-8b3f-ab1fe819d3d1.png)
+
 ## How to install server
 
 ### Prerequisites
