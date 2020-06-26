@@ -33,8 +33,12 @@ export class GameService {
   private _updateQueue: SocketUpdate[] = [];
 
   async getCurrentPage(userId: string): Promise<StoryPage> {
-    const profile = await this._profilesRepository.findOne(userId);
-    if (profile === undefined) throw ProfileNotFoundError;
+    let profile = await this._profilesRepository.findOne(userId);
+    if (profile === undefined) {
+      profile = new Profile();
+      profile.id = userId;
+      await this._profilesRepository.save(profile);
+    }
 
     if (profile.isStepSolved) {
       profile.currentStep++;

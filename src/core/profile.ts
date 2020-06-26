@@ -20,7 +20,7 @@ export class Profile {
     @Column({default: 1})
     currentStep: number;
 
-    @Column({default: true})
+    @Column({default: false})
     isStepSolved: boolean;
 
     @Column({default: 0})
