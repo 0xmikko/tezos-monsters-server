@@ -20,6 +20,8 @@ Monster factory service: https://github.com/MikaelLazarev/tezos-monsters-factory
 Tezos provides unique blockchain features for developers, however, there is a big barrier to start to use it, you have to learn a new programming language. For many blockchain 
 developers it's a barrier.
 
+![Screenshot 2020-06-26 at 02 02 27](https://user-images.githubusercontent.com/26343374/85804728-073f9f00-b753-11ea-9e60-18473ebbf281.png)
+
 ## Inspiration
 
 I've learnt and loved solidity playing with CryptoZombies. It's amazing game and very valuable resourse for developers. 
