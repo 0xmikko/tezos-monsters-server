@@ -6,6 +6,7 @@ import {
 } from "typeorm";
 import { Answer } from "./answer";
 import {TestCase} from "./testCase";
+import {GameEvent} from "./gameEvent";
 
 @Entity()
 export class StoryPage {
@@ -44,4 +45,7 @@ export class StoryPage {
 
   @OneToMany((type) => TestCase, (testCase) => testCase.storyPage)
   testCases: TestCase[];
+
+  @OneToMany((type) => GameEvent, (gameEvent) => gameEvent.storyPage)
+  events: GameEvent[];
 }
