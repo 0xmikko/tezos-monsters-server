@@ -1,5 +1,5 @@
 # Tezos Monsters
-## Horror adventure game to learn Ligo language & Tezos blockchain 
+## Learn Ligo language and Tezos by playing a horror game!
 
 ![Screenshot 2020-06-26 at 02 11 42](https://user-images.githubusercontent.com/26343374/85804722-0149be00-b753-11ea-9486-9923e3e442f3.png)
 
