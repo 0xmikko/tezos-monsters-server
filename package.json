@@ -14,7 +14,7 @@
     "typeorm:revert": "ts-node ./node_modules/.bin/typeorm migration:revert --config ./src/ormconfig.ts",
     "start-pm2": "pm2 pm2.config.js --env production",
     "star-ft": "pm2-runtime pm2.config.js --env production",
-    "start": "./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts "
+    "start": "export NODE_OPTIONS=--max_old_space_size=4096 && ./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts "
   },
   "resolutions": {
     "tslib": "1.11.2"
