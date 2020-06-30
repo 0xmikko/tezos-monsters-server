@@ -32,7 +32,9 @@ export const createApp = async (): Promise<Application> => {
   app.use(morganLogger);
   useExpressServer(app, {
     authorizationChecker: authChecker,
-    controllers: [StoryPagesController, AnswersController, TestCasesController, UserControlller],
+    controllers: [StoryPagesController, AnswersController, TestCasesController,
+      //UserControlller
+      ],
     cors: {
       origin: "*",
     },
