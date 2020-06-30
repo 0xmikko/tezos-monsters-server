@@ -52,6 +52,7 @@ export class Config {
   }
 
   static async validate(): Promise<void> {
+    console.log("Loading configuration...")
     Config.init();
     const errors = await validate(Config);
     if (errors.length > 0)
