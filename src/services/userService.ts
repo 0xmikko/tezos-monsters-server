@@ -22,7 +22,7 @@ export class UserService {
     const oauth2Client = new google.auth.OAuth2(
       config.authGoogleClientID,
       config.authGoogleClientSecret,
-      config.NODE_ENV === "development"
+        process.env.NODE_ENV === "development"
         ? config.authGoogleDevRedirectUrl
         : config.authGoogleProdRedirectUrl
     );
@@ -52,7 +52,7 @@ export class UserService {
     const oauth2Client = new google.auth.OAuth2(
       config.authGoogleClientID,
       config.authGoogleClientSecret,
-      config.NODE_ENV === "development"
+      process.env.NODE_ENV === "development"
         ? config.authGoogleDevRedirectUrl
         : config.authGoogleProdRedirectUrl
     );

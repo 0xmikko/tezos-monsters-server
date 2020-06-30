@@ -31,8 +31,6 @@ export class Config {
   @IsNotEmpty()
   static authGoogleProdRedirectUrl: string;
 
-  static NODE_ENV: string;
-
   static init() {
     Config.port = parseInt(process.env.PORT || "4000");
     Config.database_url = process.env.DATABASE_URL || "";
@@ -44,7 +42,6 @@ export class Config {
     Config.authGoogleClientSecret = process.env.AUTH_GOOGLE_SECRET || "";
     Config.authGoogleDevRedirectUrl = process.env.AUTH_GOOGLE_DEV_REDIRECT_URL|| "";
     Config.authGoogleProdRedirectUrl = process.env.AUTH_GOOGLE_PROD_REDIRECT_URL|| "";
-    Config.NODE_ENV = process.env.NODE_ENV || 'prod';
   }
 
   static getGCP() {
