@@ -15,9 +15,7 @@ import { Request, Response } from "express";
 import { CodeGoogleAuth, RefreshRequest } from "../payload/users";
 
 @JsonController("/auth")
-@Service()
 export class UserControlller {
-  @Inject()
   private _service: UserService;
 
   private _logger: Logger;
