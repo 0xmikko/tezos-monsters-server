@@ -13,6 +13,7 @@ import { ProfilesController } from "./controllers/proflieController";
 import { AnswersController } from "./controllers/answersController";
 import { GameController } from "./controllers/gameController";
 import {TestCasesController} from "./controllers/testCaseController";
+import {UserControlller} from "./controllers/userController";
 // import {UserControlller} from "./controllers/userController";
 
 export const createApp = async (): Promise<Application> => {
@@ -33,7 +34,7 @@ export const createApp = async (): Promise<Application> => {
   useExpressServer(app, {
     authorizationChecker: authChecker,
     controllers: [StoryPagesController, AnswersController, TestCasesController,
-      //UserControlller
+      UserControlller
       ],
     cors: {
       origin: "*",
