@@ -12,11 +12,15 @@ import {Profile} from "../core/profile";
 
 @Service()
 export class UserService {
-  @Inject()
   private _repository: UserRepository;
 
-  @Inject()
   private _profileRepository: ProfilesRepository;
+
+  constructor() {
+    this._repository = Container.get(UserRepository);
+    this._profileRepository = Container.get(ProfilesRepository);
+  }
+
 
   getGoogleAuthRedirect(): string {
     const oauth2Client = new google.auth.OAuth2(
