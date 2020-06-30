@@ -19,6 +19,20 @@ export class Config {
   @IsNotEmpty()
   static codeCheckerToken: string;
 
+  @IsNotEmpty()
+  static authGoogleClientID: string;
+
+  @IsNotEmpty()
+  static authGoogleClientSecret: string;
+
+  @IsNotEmpty()
+  static authGoogleDevRedirectUrl: string;
+
+  @IsNotEmpty()
+  static authGoogleProdRedirectUrl: string;
+
+  static NODE_ENV: string;
+
   static init() {
     Config.port = parseInt(process.env.PORT || "4000");
     Config.database_url = process.env.DATABASE_URL || "";
@@ -26,6 +40,11 @@ export class Config {
     Config.storyPageImagesBucket = process.env.GCP_PICUTRES_BUCKET || "";
     Config.codeCheckerUrl = process.env.CODE_CHECKER_URL || "";
     Config.codeCheckerToken = process.env.CODE_CHECKER_TOKEN || "";
+    Config.authGoogleClientID = process.env.AUTH_GOOGLE_CLIENT_ID || "";
+    Config.authGoogleClientSecret = process.env.AUTH_GOOGLE_SECRET || "";
+    Config.authGoogleDevRedirectUrl = process.env.AUTH_GOOGLE_DEV_REDIRECT_URL|| "";
+    Config.authGoogleProdRedirectUrl = process.env.AUTH_GOOGLE_PROD_REDIRECT_URL|| "";
+    Config.NODE_ENV = process.env.NODE_ENV || 'prod';
   }
 
   static getGCP() {

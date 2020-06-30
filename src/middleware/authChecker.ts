@@ -1,14 +1,7 @@
 import {Action} from "routing-controllers";
 import {verify} from "jsonwebtoken";
 import config from "../config";
-import {getManager, getRepository} from "typeorm";
-import {Profile} from "../core/profile";
-
-interface tokenData {
-  user_id: string;
-  role: string;
-
-}
+import { tokenData} from "../core/user";
 
 export const authChecker = (action: Action, roles: string[]): boolean => {
   if (

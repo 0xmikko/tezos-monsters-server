@@ -20,7 +20,7 @@ export class ProfileService {
     if (profile === undefined) {
       profile = new Profile();
       profile.id = id;
-      return await this._repository.save(profile);
+      await this._repository.save(profile);
     }
 
     profile.currentPage = await this._storyService.getPageByStep(
@@ -54,4 +54,7 @@ export class ProfileService {
     this._updateQueue = [];
     return copy;
   }
+
+
+
 }

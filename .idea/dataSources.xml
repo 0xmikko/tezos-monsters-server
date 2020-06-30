@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://ec2-34-230-231-71.compute-1.amazonaws.com:5432/d7alpn018ue6bm</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="CRM" uuid="41ddfa3f-a859-4d14-80db-25ce00dc42ff">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-34-192-173-173.compute-1.amazonaws.com:5432/d6a1c7htpjeca0</jdbc-url>
+    </data-source>
   </component>
 </project>

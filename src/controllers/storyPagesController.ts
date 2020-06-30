@@ -16,7 +16,7 @@ import { StoryPageNotFoundError } from "../errors/storyPageNotFoundError";
 import { configure, getLogger, Logger } from "log4js";
 import {Container, Inject, Service} from "typedi";
 import { StoryPagesService } from "../services/storyPagesService";
-import { User } from "../core/user";
+import { UserID } from "../core/user";
 import { ProfileService } from "../services/profileService";
 import { StoryPageUpdateDTO } from "../payload/storyPage";
 import { fileUploadOptions } from "../config/multer";
@@ -50,7 +50,7 @@ export class StoryPagesController {
   @Get("/current")
   @OnUndefined(StoryPageNotFoundError)
   async getCurrentPage(
-      @CurrentUser({ required: true }) user: User,
+      @CurrentUser({ required: true }) user: UserID,
   ) {
     const profile = await this._profileService.retrieve(user.id);
     if (profile === undefined) throw ProfileNotFoundError;
@@ -61,7 +61,7 @@ export class StoryPagesController {
   @OnUndefined(StoryPageNotFoundError)
   @Authorized("ADMIN")
   async retrieve(
-    @CurrentUser({ required: true }) user: User,
+    @CurrentUser({ required: true }) user: UserID,
     @Param("id") id: string
   ) {
     return await this._service.retrieve(id);

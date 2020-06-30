@@ -17,7 +17,7 @@ import { TestCaseNotFoundError } from "../errors/testCases";
 import { configure, getLogger, Logger } from "log4js";
 import { Container, Inject } from "typedi";
 import { TestCasesService } from "../services/testCasesService";
-import { User } from "../core/user";
+import { UserID } from "../core/user";
 import { TestCaseCreateDTO, TestCaseUpdateDTO } from "../payload/testCase";
 import { fileUploadOptions } from "../config/multer";
 
@@ -38,7 +38,7 @@ export class TestCasesController {
   @OnUndefined(TestCaseNotFoundError)
   @Authorized("ADMIN")
   async retrieve(
-    @CurrentUser({ required: true }) user: User,
+    @CurrentUser({ required: true }) user: UserID,
     @Param("id") id: string
   ) {
     return await this._service.retrieve(id);

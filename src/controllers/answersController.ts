@@ -17,7 +17,7 @@ import { AnswerNotFoundError } from "../errors/answers";
 import { configure, getLogger, Logger } from "log4js";
 import { Container, Inject } from "typedi";
 import { AnswersService } from "../services/answersService";
-import { User } from "../core/user";
+import { UserID } from "../core/user";
 import { AnswerCreateDTO, AnswerUpdateDTO } from "../payload/answers";
 import { fileUploadOptions } from "../config/multer";
 
@@ -38,7 +38,7 @@ export class AnswersController {
   @OnUndefined(AnswerNotFoundError)
   @Authorized("ADMIN")
   async retrieve(
-    @CurrentUser({ required: true }) user: User,
+    @CurrentUser({ required: true }) user: UserID,
     @Param("id") id: string
   ) {
     return await this._service.retrieve(id);
