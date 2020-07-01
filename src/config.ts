@@ -46,7 +46,7 @@ export class Config {
 
   static getGCP() {
     const gcp = process.env.GOOGLE_CP;
-    const filename = "./src/config/google.json";
+    const filename = __dirname + "/config/google.json";
     fs.writeFileSync(filename, gcp || "");
     process.env.GOOGLE_APPLICATION_CREDENTIALS = filename;
   }

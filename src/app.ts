@@ -37,7 +37,7 @@ export const createApp = async (): Promise<Application> => {
       StoryPagesController,
       AnswersController,
       TestCasesController,
-      UserController,
+      // UserController,
     ],
     cors: {
       origin: "*",

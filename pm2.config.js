@@ -1,8 +1,7 @@
 module.exports = {
   apps : [{
     name: "tezos-monsters-server",
-    script: "./node_modules/.bin/ts-node",
-    args: "--project ./tsconfig.json  ./src/index.ts",
+    script: "./build/index.js",
     node_args: "-r dotenv/config",
     instances: "2",
     env: {

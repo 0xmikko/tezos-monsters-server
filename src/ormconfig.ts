@@ -1,5 +1,6 @@
 import config from "./config";
 import { ConnectionOptions } from "typeorm/connection/ConnectionOptions";
+import * as path from "path";
 
 export const dbConfig: ConnectionOptions = {
   type: "postgres",
@@ -7,12 +8,9 @@ export const dbConfig: ConnectionOptions = {
   extra: {
     ssl: { rejectUnauthorized: false },
   },
-  entities: [
-    // 'build/core/*.js',
-    "src/core/*.ts",
-  ],
-  migrations: ["src/migrations/**/*.ts"],
-  subscribers: ["src/subscriber/**/*.ts"],
+  entities: [path.join(__dirname, "core/*.{ts,js}")],
+  migrations: [path.join(__dirname, "migrations/*.{ts,js}")],
+  subscribers: [path.join(__dirname, "subscribers/*.{ts,js}")],
   cli: {
     entitiesDir: "src/core",
     migrationsDir: "src/migrations",
