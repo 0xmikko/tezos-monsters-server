@@ -13,8 +13,9 @@
     "typeorm:migrate": "ts-node ./node_modules/.bin/typeorm migration:run --config ./src/ormconfig.ts",
     "typeorm:revert": "ts-node ./node_modules/.bin/typeorm migration:revert --config ./src/ormconfig.ts",
     "start-pm2": "pm2 pm2.config.js --env production",
-    "start": "tsc && pm2-runtime pm2.config.js --env production",
-    "start-fo": "tsc && export NODE_OPTIONS=--max_old_space_size=2048 && ./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts "
+    "start": "pm2-runtime pm2.config.js --env production",
+    "start-fo": "tsc &&  && ./node_modules/.bin/forever --minUptime 10000 --spinSleepTime 1000 -v  -c  \"./node_modules/.bin/ts-node -r dotenv/config --project ./tsconfig.json\"  ./src/index.ts ",
+    "postinstall": "tsc && export NODE_OPTIONS=--max_old_space_size=2048"
   },
   "resolutions": {
     "tslib": "1.11.2"
