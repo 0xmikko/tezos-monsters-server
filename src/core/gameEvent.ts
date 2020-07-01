@@ -1,4 +1,4 @@
-import {Column, CreateDateColumn, Entity, ManyToOne, OneToOne, PrimaryColumn} from "typeorm";
+import {Column, CreateDateColumn, Entity, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 import {StoryPage} from "./storyPage";
 import {Answer} from "./answer";
 import {Profile} from "./profile";
@@ -10,7 +10,7 @@ type EventType =
 
 @Entity()
 export class GameEvent {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @CreateDateColumn()
@@ -28,12 +28,12 @@ export class GameEvent {
     @ManyToOne((type) => Answer, (answer) => answer.events)
     answer: Answer;
 
-    @Column()
+    @Column({default: ""})
     codeSubmitted: string;
 
-    @Column()
+    @Column({default: false})
     result: boolean;
 
-    @Column()
-    review: boolean;
+    @Column({default: ""})
+    review: string;
 }

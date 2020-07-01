@@ -1,7 +1,8 @@
 import {
-  Body,
+  Authorized,
+  Body, CurrentUser,
   Get,
-  JsonController,
+  JsonController, OnUndefined, Param,
   Post,
   Redirect,
   Req,
@@ -12,8 +13,11 @@ import { Container, Inject, Service } from "typedi";
 import { UserService } from "../services/userService";
 import { Request, Response } from "express";
 import { CodeGoogleAuth, RefreshRequest } from "../payload/users";
+import {AnswerNotFoundError} from "../errors/answers";
+import {UserID} from "../core/user";
+import {UserNotFoundError} from "../errors/users";
 
-@JsonController("/auth")
+@JsonController(  )
 export class UserController {
   private _service: UserService;
 
@@ -25,20 +29,36 @@ export class UserController {
     this._service = Container.get(UserService);
   }
 
-  @Get("/login/google/")
+  @Get("/api/users/")
+  @Authorized("ADMIN")
+  async list() {
+    return await this._service.list();
+  }
+
+  @Get("/api/users/:id")
+  @OnUndefined(UserNotFoundError)
+  @Authorized("ADMIN")
+  async retrieve(
+      @Param("id") id: string
+  ) {
+    return await this._service.retrieve(id);
+  }
+
+
+  @Get("/auth/login/google/")
   @Redirect("https://google.com/")
   async redirect(@Req() req: Request, @Res() res: Response) {
     this._logger.debug("List request");
     return this._service.getGoogleAuthRedirect();
   }
 
-  @Post("/google/done/")
+  @Post("/auth/google/done/")
   async loginGoogle(@Body() codeRequest: CodeGoogleAuth) {
     const tokenPair = await this._service.loginGoogle(codeRequest.code);
     return tokenPair;
   }
 
-  @Post("/token/refresh")
+  @Post("/auth/token/refresh")
   async refresh(@Body() refreshRequest: RefreshRequest) {
     const result = await this._service.refresh(refreshRequest.refresh);
     return result;

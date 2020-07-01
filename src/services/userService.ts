@@ -21,6 +21,14 @@ export class UserService {
     this._profileRepository = Container.get(ProfilesRepository);
   }
 
+  async list() : Promise<User[] | undefined> {
+    return await this._repository.listFull();
+  }
+
+  async retrieve(id: string) : Promise<User | undefined> {
+    return await this._repository.findFull(id);
+  }
+
 
   getGoogleAuthRedirect(): string {
     const oauth2Client = new google.auth.OAuth2(
