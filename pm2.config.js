@@ -3,7 +3,7 @@ module.exports = {
     name: "tezos-monsters-server",
     script: "./build/index.js",
     node_args: "-r dotenv/config",
-    instances: "2",
+    instances: "max",
     env: {
       NODE_ENV: "development",
     },
