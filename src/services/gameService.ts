@@ -123,7 +123,17 @@ export class GameService {
           checkResult.result =
             `Error happened during test #${i} of ${testCases.length}\n` +
             checkResult.result;
-          return checkResult;
+          resolve(checkResult);
+          const event = new GameEvent();
+          event.id = uuidv4();
+          event.type = "CODE_SUBMITTED";
+          event.storyPage = storyPage;
+          event.profile = profile;
+          event.codeSubmitted = dto.code;
+          event.result = !checkResult.error;
+          event.review = checkResult.result;
+          await this._gameEventRepository.save(event);
+          return
         }
       }
       profile.isStepSolved = true;
