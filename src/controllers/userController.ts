@@ -17,7 +17,7 @@ import {AnswerNotFoundError} from "../errors/answers";
 import {UserID} from "../core/user";
 import {UserNotFoundError} from "../errors/users";
 
-@JsonController(  )
+@JsonController()
 export class UserController {
   private _service: UserService;
 

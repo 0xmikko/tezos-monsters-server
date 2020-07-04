@@ -154,7 +154,7 @@ export class GameService {
     });
   }
 
-  async showMeAnswer(userId: string): Promise<CodeRightAnswer> {
+  async showMeAnswer(userId: string): Promise<StoryPage> {
     const profile = await this._profilesRepository.findOne(userId);
     if (profile === undefined) throw ProfileNotFoundError;
 
@@ -163,10 +163,12 @@ export class GameService {
     );
     if (storyPage === undefined) throw StoryPageNotFoundError;
 
-    profile.gold -= 200; // ToDo: reward (!)
+    profile.gold -= 10000; // ToDo: reward (!)
     await this._profilesRepository.save(profile);
 
-    return new CodeRightAnswer(storyPage);
+    storyPage.initialCode = storyPage.codeRightAnswer
+
+    return storyPage;
   }
 
   getUpdateQueue(): SocketUpdate[] {

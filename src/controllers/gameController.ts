@@ -101,11 +101,13 @@ export class GameController implements SocketController {
 
       showMeAnswer: async (dto: string, opHash) => {
         try {
-          const codeShowMeAnswer = await this._service.showMeAnswer(userId);
-          socket.emit(this._namespace + ":codeReviewResult", codeShowMeAnswer);
+          const storyPage = await this._service.showMeAnswer(userId);
+          socket.emit("game:currentPage", storyPage);
 
           const profile = await this._profileService.retrieve(userId);
           socket.emit("profile:updateDetails", profile);
+          socket.ok(opHash);
+
         } catch (e) {
           console.log(e);
           socket.failure(opHash, e);
