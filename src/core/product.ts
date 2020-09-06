@@ -3,7 +3,7 @@ import {
   Entity, ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { StoryPage } from "./storyPage";
+import { Customer } from "./storyPage";
 import {AnswerCreateDTO, AnswerUpdateDTO} from "../payload/answers";
 
 @Entity()
@@ -29,7 +29,7 @@ export class TestCase {
   @Column({ default: "" })
   expected: string;
 
-  @ManyToOne((type) => StoryPage, (storyPage) => storyPage.testCases)
-  storyPage: StoryPage;
+  @ManyToOne((type) => Customer, (storyPage) => storyPage.testCases)
+  storyPage: Customer;
 }
 

@@ -3,7 +3,7 @@ import {
   Entity, ManyToOne, OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { StoryPage } from "./storyPage";
+import { Customer } from "./storyPage";
 import {AnswerCreateDTO, AnswerUpdateDTO} from "../payload/answers";
 import {GameEvent} from "./gameEvent";
 
@@ -30,8 +30,8 @@ export class Answer {
   @Column({default: 0})
   reward: number;
 
-  @ManyToOne((type) => StoryPage, (storyPage) => storyPage.answers)
-  storyPage: StoryPage;
+  @ManyToOne((type) => Customer, (storyPage) => storyPage.answers)
+  storyPage: Customer;
 
   @OneToMany((type) => GameEvent, (gameEvent) => gameEvent.answer)
   events: GameEvent[];

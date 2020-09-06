@@ -1,9 +1,9 @@
 import { Container, Inject, Service } from "typedi";
 import {
-  StoryPage,
+  Customer,
 } from "../core/storyPage";
 import { StoryPageNotFoundError } from "../errors/storyPageNotFoundError";
-import { StoryPagesRepository } from "../repository/storyPagesRepository";
+import { CustomerRepository } from "../repository/storyPagesRepository";
 import config from "../config";
 import { GoogleStorage } from "../repository/googleStorage";
 import {mapDTOtoStoryPage, StoryPageUpdateDTO} from "../payload/storyPage";
@@ -13,7 +13,7 @@ import {getLogger, Logger} from "log4js";
 export class StoryPagesService  {
 
   @Inject()
-  private _repository: StoryPagesRepository;
+  private _repository: CustomerRepository;
 
   private _logger: Logger;
 
@@ -24,7 +24,7 @@ export class StoryPagesService  {
   }
 
 
-  async retrieve(id: string): Promise<StoryPage | undefined> {
+  async retrieve(id: string): Promise<Customer | undefined> {
     try {
       return await this._repository.getFull(id);
     } catch (e) {
@@ -38,7 +38,7 @@ export class StoryPagesService  {
     return page === undefined ? "error" : page.id;
   }
 
-  async list(): Promise<StoryPage[] | undefined> {
+  async list(): Promise<Customer[] | undefined> {
     try {
       return await this._repository.listOrderedByStep();
     } catch (e) {
@@ -47,13 +47,13 @@ export class StoryPagesService  {
     }
   }
 
-  async create(dto: StoryPageUpdateDTO): Promise<StoryPage> {
-    const storyPage = new StoryPage();
+  async create(dto: StoryPageUpdateDTO): Promise<Customer> {
+    const storyPage = new Customer();
     mapDTOtoStoryPage(dto, storyPage);
     return this._repository.save(storyPage);
   }
 
-  async update(id: string, dto: StoryPageUpdateDTO): Promise<StoryPage> {
+  async update(id: string, dto: StoryPageUpdateDTO): Promise<Customer> {
     const storyPage = await this._repository.findOne(id);
     if (storyPage === undefined) throw StoryPageNotFoundError;
     mapDTOtoStoryPage(dto, storyPage);
@@ -64,7 +64,7 @@ export class StoryPagesService  {
     id: string,
     path: string,
     filename: string
-  ): Promise<StoryPage> {
+  ): Promise<Customer> {
     const storyPage = await this._repository.findOne(id);
     if (storyPage === undefined) throw StoryPageNotFoundError;
 

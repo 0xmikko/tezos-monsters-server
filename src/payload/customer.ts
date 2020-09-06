@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator";
-import { StoryPage } from "../core/storyPage";
+import { Customer } from "../core/storyPage";
 import {Column} from "typeorm";
 
 export class StoryPageUpdateDTO {
@@ -27,7 +27,7 @@ export class StoryPageUpdateDTO {
 
 export function mapDTOtoStoryPage(
   dto: StoryPageUpdateDTO,
-  storyPage: StoryPage
+  storyPage: Customer
 ) {
   storyPage.header = dto.header;
   storyPage.text = dto.text;
