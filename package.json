@@ -35,7 +35,7 @@
     "@types/socketio-jwt": "^0.2.0",
     "@types/uuid": "^8.0.0",
     "ajv": "^6.12.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "chalk": "^4.0.0",
     "class-transformer": "^0.2.3",
